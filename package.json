@@ -1,0 +1,13 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "sass": "sass scss:css"
+  },
+  "devDependencies": {
+    "sass": "^1.64.2"
+  }
+}

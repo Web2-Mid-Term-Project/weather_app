@@ -1,0 +1,15 @@
+.favorite-btn {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+
+    svg path {
+        fill: $star-icon-bg;
+    }
+
+    &:hover {
+        svg path{
+            fill: $star-icon-hover-bg
+        }
+    }
+}

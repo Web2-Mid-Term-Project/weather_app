@@ -1,5 +1,15 @@
 # Weather App
 
+## JS
+
+When you edit js files, you need to bundle the files to reflect changes.
+
+To bundle them, run
+
+```sh
+npm run build
+```
+
 ## SCSS
 
 To compile scss to css, run

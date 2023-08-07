@@ -5,9 +5,11 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "sass": "sass scss:css"
+    "sass": "sass scss:css",
+    "build": "rollup javascript/index.js --file bundle.js --format iife"
   },
   "devDependencies": {
+    "rollup": "^3.27.2",
     "sass": "^1.64.2"
   }
 }

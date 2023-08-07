@@ -98,7 +98,7 @@ h2 {
   top: 10px;
   right: 10px;
 }
-.current-weather-section .city-weather-info {
+.current-weather-section #current-weather-condition {
   width: 50%;
   height: auto;
   border: 2px solid grey;

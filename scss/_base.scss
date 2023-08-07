@@ -1,0 +1,14 @@
+$font-main: 'Open Sans', sans-serif;
+$star-icon-bg: #ED8A19;
+$star-icon-hover-bg: #e9a14f;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-main;
+}

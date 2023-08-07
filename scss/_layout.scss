@@ -1,0 +1,175 @@
+header {
+    background-color: lightgray;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+main {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 1.5rem;
+}
+
+
+h2 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.main-section {
+    width: 80%;
+    height: auto;
+    min-height: 500px;
+    border: 2px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+}
+
+.input-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-weather-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        padding: 1rem;
+        border: 2px solid grey;
+    }
+
+
+    .favorite-btn {
+        position: absolute;
+        z-index: 2;
+        top: 10px;
+        right: 10px;
+    }
+
+    .city-weather-info {
+        width: 50%;
+        height: auto;
+        border: 2px solid grey;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.daily-forcast-section {
+    width: 100%;
+    height: auto;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        height: auto;
+    }
+
+    .daily-tile {
+        border: 2px solid grey;
+        border-radius: 5px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        width: 25%;
+    }
+
+    .day-one {
+        margin-left: 0;
+    }
+    .day-five {
+        margin-right: 0;
+    }
+}
+
+.tile-top-content,
+.tile-bottom-content {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile-top-content {
+    border-bottom: 2px solid grey;
+}
+
+.extra-info {
+    margin-top: 0.5rem;
+}
+
+.hours-forcast-section {
+    width: 100%;
+    height: auto;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        height: auto;
+    }
+
+    .hours-tile {
+        border: 2px solid grey;
+        border-radius: 5px;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        min-width: 120px;
+    }
+
+    .tile-12am {
+        margin-left: 0;
+    }
+    .tile-9pm {
+        margin-right: 0;
+    }
+
+    .time-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

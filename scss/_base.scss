@@ -1,25 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Varela+Round&display=swap");
 
-$font-main: 'Roboto', sans-serif;
-$font-header: 'Varela Round', sans-serif;
+$font-main: "Roboto", sans-serif;
+$font-header: "Varela Round", sans-serif;
 $star-icon-bg: #fdfdfd;
 $star-icon-hover-bg: #e9a14f;
-$color-header: #C3E6FF;
+$color-header: #c3e6ff;
 $header-border: #bbddf5;
 $color-bg: #fefefe;
-$color-section: #FFF9F1;
+$color-section: #fff9f1;
 $color-font: #32404e;
-$high-temp-color: #598AE2;
+$high-temp-color: #598ae2;
 $daily-tile-border: #f3ae53;
-$hour-tile-bg: #FFD47C;
+$hour-tile-bg: #ffd47c;
 $hour-tile-border: #b0d0e6;
 $tile-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
 $desktop-width: 1220px;
 $tablet-width: 830px;
 $mobile-width: 500px;
-$daytime-bg-pic: '/images/daytime-photo.jpeg';
-$nighttime-bg-pic: '/images/nighttime-photo.jpeg';
-
+$daytime-bg-pic: "/images/daytime-photo.jpeg";
+$nighttime-bg-pic: "/images/nighttime-photo.jpeg";
 
 * {
   margin: 0;

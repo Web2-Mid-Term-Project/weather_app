@@ -148,11 +148,17 @@
     });
   };
 
+  const displayFavoriteCity = () => {
+
+    console.log("gdsgda");
+  };
+
   function main() {
     displayCityName();
     displayCurrentWeather();
     displayDailyForecast();
     displayThreeHourRange();
+    displayFavoriteCity();
   }
 
   main();

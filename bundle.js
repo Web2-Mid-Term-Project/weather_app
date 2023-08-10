@@ -1,14 +1,6 @@
 (function () {
   'use strict';
 
-  const CITY_NAME = "Vancouver";
-
-  const displayCityName = () => {
-    const cityNameElements = document.getElementsByClassName("city-name");
-    const element = cityNameElements[0];
-    element.textContent = CITY_NAME;
-  };
-
   const displayCurrentWeather = () => {
     const currentTemperatureElem = document.getElementById("current-temperature");
     const currentWeatherConditionElem = document.getElementById(
@@ -148,11 +140,97 @@
     });
   };
 
-  function main() {
-    displayCityName();
+  const displayCityName = (city) => {
+    const cityNameElements = document.getElementsByClassName("city-name");
+    const element = cityNameElements[0];
+    element.textContent = city;
+  };
+
+  const CITY_NAME = "Vancouver";
+
+  const displayAllWeatherInfo = (city = CITY_NAME) => {
+    displayCityName(city);
     displayCurrentWeather();
     displayDailyForecast();
     displayThreeHourRange();
+  };
+
+  async function getUserLocation() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      displayAllWeatherInfo();
+    }
+  }
+
+  function success(position) {
+    const userLocation = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    const geocoder = new google.maps.Geocoder();
+    let defaultCity;
+
+    geocoder
+      .geocode({ location: userLocation })
+      .then((res) => {
+        if (res.results[0]) {
+          const addressComponents = res.results[0].address_components;
+          const cityComponent = addressComponents.find((component) =>
+            component.types.includes("locality")
+          );
+          defaultCity = cityComponent ? cityComponent.long_name : CITY_NAME;
+        } else {
+          defaultCity = CITY_NAME;
+        }
+      })
+      .catch((e) => {
+        defaultCity = CITY_NAME;
+      });
+    displayAllWeatherInfo(defaultCity);
+  }
+
+  function error() {
+    displayAllWeatherInfo();
+  }
+
+  let autocomplete;
+
+  function searchCityName() {
+    let script = document.createElement("script");
+    script.src =
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBOK2WAVP1Vtx-XkhGmwXG6-MBVZd7D6_c&libraries=places&callback=initAutocomplete";
+    script.async = true;
+
+    window.initAutocomplete = function () {
+      autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById("search-input"),
+        {
+          types: ["(cities)"],
+        }
+      );
+      autocomplete.addListener("place_changed", onPlaceChanged);
+    };
+
+    document.head.appendChild(script);
+  }
+
+  function onPlaceChanged() {
+    const place = autocomplete.getPlace();
+
+    if (!place.geometry) {
+      document.getElementById("search-input").placeholder = "Enter a city";
+    } else {
+      displayAllWeatherInfo(place.name);
+    }
+  }
+
+  function main() {
+    displayCurrentWeather();
+    displayDailyForecast();
+    displayThreeHourRange();
+    getUserLocation();
+    searchCityName();
   }
 
   main();

@@ -1,14 +1,33 @@
-$font-main: 'Open Sans', sans-serif;
-$star-icon-bg: #ED8A19;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Varela+Round&display=swap');
+
+$font-main: 'Roboto', sans-serif;
+$font-header: 'Varela Round', sans-serif;
+$star-icon-bg: #fdfdfd;
 $star-icon-hover-bg: #e9a14f;
+$color-header: #C3E6FF;
+$header-border: #bbddf5;
+$color-bg: #fefefe;
+$color-section: #FFF9F1;
+$color-font: #32404e;
+$high-temp-color: #598AE2;
+$daily-tile-border: #f3ae53;
+$hour-tile-bg: #FFD47C;
+$hour-tile-border: #b0d0e6;
+$tile-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
+$desktop-width: 1220px;
+$tablet-width: 830px;
+$mobile-width: 500px;
+$daytime-bg-pic: '/images/daytime-photo.jpeg';
+$nighttime-bg-pic: '/images/nighttime-photo.jpeg';
 
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: $font-main;
+  font-family: $font-main;
+  color: $color-font;
 }

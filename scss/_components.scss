@@ -8,8 +8,88 @@
     }
 
     &:hover {
-        svg path{
+        svg path {
             fill: $star-icon-hover-bg
+        }
+    }
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        margin-left: 5px;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+}
+
+.favorite-city-dropdown {
+    width: 300px;
+    height: 45px;
+    padding: 0.5rem;
+    background-color: $color-bg;
+    border-radius: 5px;
+    border-color: $hour-tile-border;
+    font-family: $font-main;
+    font-size: 1.1rem;
+    color: $color-font;
+
+    @media screen and (max-width: $tablet-width) {
+        width: 49%;
+    }
+
+    @media screen and (max-width: $mobile-width) {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+
+.main-search {
+    width: 300px;
+    height: 45px;
+    background-color: $color-header;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: $tablet-width) {
+        width: 49%;
+    }
+
+    @media screen and (max-width: $mobile-width) {
+        order: -1;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    svg {
+        margin: 0 5px;
+    }
+
+
+    #search-input {
+        width: 250px;
+        height: 100%;
+        background-color: $color-header;
+        border: 0;
+        margin-left: 5px;
+
+        &::placeholder {
+            font-size: 1rem;
+        }
+
+        &:focus {
+            outline: 0;
+        }
+
+        &[type="search"] {
+            font-size: 1.1rem;
+            color: $color-font;
         }
     }
 }

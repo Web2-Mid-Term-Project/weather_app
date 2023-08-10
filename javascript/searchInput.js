@@ -24,7 +24,7 @@ function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
   if (!place.geometry) {
-    document.getElementById("search-input").placeholder = "Enter a city";
+    document.getElementById("search-input").placeholder = "Search Cities";
   } else {
     displayAllWeatherInfo(place.name);
   }

@@ -5,8 +5,8 @@ export const displayThreeHourRange = (data) => {
   dailyHoursData.forEach((obj) => {
     formattedArray.push({
       temp: {
-        min: obj.main.temp_min,
-        max: obj.main.temp_max,
+        min: Math.round(obj.main.temp_min.toFixed(2)),
+        max: Math.round(obj.main.temp_max.toFixed(2)),
       },
       condition: obj.weather.map((condition) => condition.main),
       dt_txt: obj.dt_txt,

@@ -7,56 +7,71 @@ export const displayDailyForecast = async () => {
   try {
     const res = await fetch(apiUrl);
     const data = await res.json();
-    console.log('data', data);
 
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const dividedArray = [];
+    const finalArray = [];
 
+    /**
+     * Making 5 dividedArray, each has 8 array (3hours forecast)
+     */
     for (let i = 0; i < data.list.length; i += 8) {
       const dailyArray = data.list.slice(i, i + 8);
       dividedArray.push(dailyArray);
     }
 
-    console.log('dividedArray', dividedArray);
+    /**
+     *
+     * @param {*} day - number(1-5)
+     * @param {*} type - string(temp_max | temp_min)
+     * @returns averageTemp - ex.27
+     */
+    const averageTemp = (day, type) => {
+      const sum = dividedArray[day - 1].reduce(
+        (acc, cur) => acc + cur.main[type],
+        0
+      );
+      return Math.round((sum / dividedArray[day - 1].length).toFixed(2));
+    };
 
-    // const dummyResponse = {
-    //   list: [
-    //     {
-    //       main: { temp_min: 290.31, temp_max: 292.46 },
-    //       weather: [{ main: 'Rain' }],
-    //       dt_txt: '2022-08-05 15:00:00',
-    //     },
-    //     {
-    //       main: { temp_min: 290.31, temp_max: 292.46 },
-    //       weather: [{ main: 'Rain' }],
-    //       dt_txt: '2022-08-06 15:00:00',
-    //     },
-    //     {
-    //       main: { temp_min: 290.31, temp_max: 292.46 },
-    //       weather: [{ main: 'Rain' }],
-    //       dt_txt: '2022-08-07 15:00:00',
-    //     },
-    //     {
-    //       main: { temp_min: 290.31, temp_max: 292.46 },
-    //       weather: [{ main: 'Rain' }],
-    //       dt_txt: '2022-08-08 15:00:00',
-    //     },
-    //     {
-    //       main: { temp_min: 290.31, temp_max: 292.46 },
-    //       weather: [{ main: 'Rain' }],
-    //       dt_txt: '2022-08-09 15:00:00',
-    //     },
-    //   ],
-    // };
+    /**
+     *
+     * @param {*} day - number(1-5)
+     * @returns Array of weatherCondition for one day
+     */
+    const weatherCondition = (day) => {
+      const conditions = [];
+      dividedArray[day - 1].forEach((hoursWeather) => {
+        const condition = hoursWeather.weather[0].main;
+        if (!conditions.includes(condition)) {
+          conditions.push(condition);
+        }
+      });
+      return conditions;
+    };
 
-    data.list.forEach((weather, i) => {
+    /**
+     * Making 5 finalArray to display
+     */
+    for (let i = 0; i < dividedArray.length; i++) {
+      finalArray.push({
+        temp: {
+          min: averageTemp(i + 1, 'temp_min'),
+          max: averageTemp(i + 1, 'temp_max'),
+        },
+        condition: weatherCondition(i + 1),
+        dt_txt: dividedArray[i][0].dt_txt,
+      });
+    }
+
+    finalArray.forEach((weather, i) => {
       const highTempElem = document.getElementById(`high-temp-day${i + 1}`);
-      highTempElem.textContent = weather.main.temp_max;
+      highTempElem.textContent = weather.temp.max;
       const lowTempElem = document.getElementById(`low-temp-day${i + 1}`);
-      lowTempElem.textContent = weather.main.temp_min;
+      lowTempElem.textContent = weather.temp.min;
 
       const dateObj = new Date(weather.dt_txt);
 
@@ -78,7 +93,7 @@ export const displayDailyForecast = async () => {
       const conditionElem = document.getElementById(
         `weather-condition-day${i + 1}`
       );
-      conditionElem.textContent = weather.weather[0].main;
+      conditionElem.textContent = weather.condition.join(' | ');
     });
   } catch (error) {
     console.error('Error occurred', error);

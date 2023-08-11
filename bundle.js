@@ -18,10 +18,126 @@
     currentWeatherConditionElem.textContent = dummyResponse.weather[0].main;
   };
 
-  const displayDailyForecast = async () => {
+  const displayDailyForecast = (data) => {
+    const dividedArray = [];
+    const formattedArray = [];
+
+    /**
+     * Making 5 dividedArray, each has 8 array (3hours forecast)
+     */
+    if (data) {
+      for (let i = 0; i < data.list.length; i += 8) {
+        const dailyArray = data.list.slice(i, i + 8);
+        dividedArray.push(dailyArray);
+      }
+    }
+
+    /**
+     *
+     * @param {*} day - number(1-5)
+     * @param {*} type - string(temp_max | temp_min)
+     * @returns averageTemp - ex.27
+     */
+    const averageTemp = (day, type) => {
+      const sum = dividedArray[day - 1].reduce(
+        (acc, cur) => acc + cur.main[type],
+        0
+      );
+      return Math.round((sum / dividedArray[day - 1].length).toFixed(2));
+    };
+
+    /**
+     *
+     * @param {*} day - number(1-5)
+     * @returns Array of weatherCondition for one day
+     */
+    const weatherCondition = (day) => {
+      const conditions = [];
+      dividedArray[day - 1].forEach((hoursWeather) => {
+        const condition = hoursWeather.weather[0].main;
+        if (!conditions.includes(condition)) {
+          conditions.push(condition);
+        }
+      });
+      return conditions;
+    };
+
+    /**
+     * Making 5 formattedArray to display
+     */
+    for (let i = 0; i < dividedArray.length; i++) {
+      formattedArray.push({
+        temp: {
+          min: averageTemp(i + 1, 'temp_min'),
+          max: averageTemp(i + 1, 'temp_max'),
+        },
+        condition: weatherCondition(i + 1),
+        dt_txt: dividedArray[i][0].dt_txt,
+      });
+    }
+
+    formattedArray.forEach((weather, i) => {
+      const highTempElem = document.getElementById(`high-temp-day${i + 1}`);
+      highTempElem.textContent = weather.temp.max;
+      const lowTempElem = document.getElementById(`low-temp-day${i + 1}`);
+      lowTempElem.textContent = weather.temp.min;
+
+      const dateObj = new Date(weather.dt_txt);
+
+      // day
+      const day = dateObj.toLocaleString('en-US', { weekday: 'short' });
+      const dayElem = document.getElementById(`daily-day${i + 1}`);
+      dayElem.textContent = day;
+
+      // month
+      const month = dateObj.toLocaleString('en-US', { month: 'short' });
+      const monthElem = document.getElementById(`daily-month${i + 1}`);
+      monthElem.textContent = month;
+
+      // date
+      const date = dateObj.getDate();
+      const dateElem = document.getElementById(`daily-date${i + 1}`);
+      dateElem.textContent = date;
+
+      const conditionElem = document.getElementById(
+        `weather-condition-day${i + 1}`
+      );
+      conditionElem.textContent = weather.condition.join(' | ');
+    });
+  };
+
+  const displayThreeHourRange = (data) => {
+    const formattedArray = [];
+    const dailyHoursData = data.list.slice(0, 8);
+
+    dailyHoursData.forEach((obj) => {
+      formattedArray.push({
+        temp: {
+          min: obj.main.temp_min,
+          max: obj.main.temp_max,
+        },
+        condition: obj.weather.map((condition) => condition.main),
+        dt_txt: obj.dt_txt,
+      });
+    });
+
+    formattedArray.forEach((weather, i) => {
+      const highTempElem = document.getElementById(`high-temp-${i * 3}`);
+      highTempElem.textContent = weather.temp.max;
+      const lowTempElem = document.getElementById(`low-temp-${i * 3}`);
+      lowTempElem.textContent = weather.temp.min;
+
+      const conditionElem = document.getElementById(`weather-condition-${i * 3}`);
+      conditionElem.textContent = weather.condition.join(' | ');
+    });
+  };
+
+  const getDailyThreeHoursForecast = async () => {
+    // TODO Fix later to using param data
+    const lat = '49.2710362';
     const lon = '-122.9808259';
 
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${l3333}&lon=${lon}&appid=5b68ac118b2ff547eea32a8d4e1d0f9e&units=metric`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=5b68ac118b2ff547eea32a8d4e1d0f9e&units=metric`;
 
     try {
       const res = await fetch(apiUrl);
@@ -31,151 +147,11 @@
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const dividedArray = [];
-      const finalArray = [];
-
-      /**
-       * Making 5 dividedArray, each has 8 array (3hours forecast)
-       */
-      for (let i = 0; i < data.list.length; i += 8) {
-        const dailyArray = data.list.slice(i, i + 8);
-        dividedArray.push(dailyArray);
-      }
-
-      /**
-       *
-       * @param {*} day - number(1-5)
-       * @param {*} type - string(temp_max | temp_min)
-       * @returns averageTemp - ex.27
-       */
-      const averageTemp = (day, type) => {
-        const sum = dividedArray[day - 1].reduce(
-          (acc, cur) => acc + cur.main[type],
-          0
-        );
-        return Math.round((sum / dividedArray[day - 1].length).toFixed(2));
-      };
-
-      /**
-       *
-       * @param {*} day - number(1-5)
-       * @returns Array of weatherCondition for one day
-       */
-      const weatherCondition = (day) => {
-        const conditions = [];
-        dividedArray[day - 1].forEach((hoursWeather) => {
-          const condition = hoursWeather.weather[0].main;
-          if (!conditions.includes(condition)) {
-            conditions.push(condition);
-          }
-        });
-        return conditions;
-      };
-
-      /**
-       * Making 5 finalArray to display
-       */
-      for (let i = 0; i < dividedArray.length; i++) {
-        finalArray.push({
-          temp: {
-            min: averageTemp(i + 1, 'temp_min'),
-            max: averageTemp(i + 1, 'temp_max'),
-          },
-          condition: weatherCondition(i + 1),
-          dt_txt: dividedArray[i][0].dt_txt,
-        });
-      }
-
-      finalArray.forEach((weather, i) => {
-        const highTempElem = document.getElementById(`high-temp-day${i + 1}`);
-        highTempElem.textContent = weather.temp.max;
-        const lowTempElem = document.getElementById(`low-temp-day${i + 1}`);
-        lowTempElem.textContent = weather.temp.min;
-
-        const dateObj = new Date(weather.dt_txt);
-
-        // day
-        const day = dateObj.toLocaleString('en-US', { weekday: 'short' });
-        const dayElem = document.getElementById(`daily-day${i + 1}`);
-        dayElem.textContent = day;
-
-        // month
-        const month = dateObj.toLocaleString('en-US', { month: 'short' });
-        const monthElem = document.getElementById(`daily-month${i + 1}`);
-        monthElem.textContent = month;
-
-        // date
-        const date = dateObj.getDate();
-        const dateElem = document.getElementById(`daily-date${i + 1}`);
-        dateElem.textContent = date;
-
-        const conditionElem = document.getElementById(
-          `weather-condition-day${i + 1}`
-        );
-        conditionElem.textContent = weather.condition.join(' | ');
-      });
+      displayDailyForecast(data);
+      displayThreeHourRange(data);
     } catch (error) {
       console.error('Error occurred', error);
     }
-  };
-
-  const displayThreeHourRange = () => {
-    // FIXME: replace with real API call
-    // ref: https://openweathermap.org/forecast5
-    const dummyResponse = {
-      list: [
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 00:00:00",
-        },
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 03:00:00",
-        },
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 06:00:00",
-        },
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 09:00:00",
-        },
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 12:00:00",
-        },
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 15:00:00",
-        },
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 18:00:00",
-        },
-        {
-          main: { temp_min: 290.31, temp_max: 292.46 },
-          weather: [{ main: "Rain" }],
-          dt_txt: "2022-08-05 21:00:00",
-        },
-      ],
-    };
-
-    dummyResponse.list.forEach((weather, i) => {
-      const highTempElem = document.getElementById(`high-temp-${i * 3}`);
-      highTempElem.textContent = weather.main.temp_max;
-      const lowTempElem = document.getElementById(`low-temp-${i * 3}`);
-      lowTempElem.textContent = weather.main.temp_min;
-
-      const conditionElem = document.getElementById(`weather-condition-${i * 3}`);
-      conditionElem.textContent = weather.weather[0].main;
-    });
   };
 
   const displayCityName = (city) => {
@@ -184,13 +160,12 @@
     element.textContent = city;
   };
 
-  const CITY_NAME = "Vancouver";
+  const CITY_NAME = 'Vancouver';
 
   const displayAllWeatherInfo = (city = CITY_NAME) => {
     displayCityName(city);
     displayCurrentWeather();
-    displayDailyForecast();
-    displayThreeHourRange();
+    getDailyThreeHoursForecast();
   };
 
   async function getUserLocation() {
@@ -264,10 +239,9 @@
 
   function main() {
     displayCurrentWeather();
-    displayDailyForecast();
-    displayThreeHourRange();
     getUserLocation();
     searchCityName();
+    getDailyThreeHoursForecast();
   }
 
   main();

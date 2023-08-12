@@ -5,7 +5,7 @@ import { displayThreeHourRange } from './threeHourRange';
 import { displayCityName } from './cityName';
 import { getDailyThreeHoursForecast } from './getDailyThreeHoursForecast';
 
-export const displayAllWeatherInfo = async (lat, lng, city) => {
+export const displayAllWeatherInfo = async (lat, lng) => {
   const updatedCityName = await getCurrentCityName(lat, lng);
   displayCityName(updatedCityName);
   const data = await getDailyThreeHoursForecast(lat, lng);

@@ -8,7 +8,9 @@ export const saveFavoriteCity = () => {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     const selectedCityData = onPlaceChanged();
-    const index = favorites.indexOf(selectedCityData.name);
+    const index = favorites.findIndex(
+      (city) => city.name === selectedCityData.name
+    );
 
     if (index === -1) {
       favorites.push(selectedCityData);

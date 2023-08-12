@@ -2,6 +2,7 @@ import { displayCityName } from "./cityName";
 import { displayCurrentWeather } from "./currentWeather";
 import { displayDailyForecast } from "./dailyForecast";
 import { getCurrentCityName } from "./getCurrentCityName";
+import { getCurrentWeather } from "./getCurrentWeather";
 import { getDailyThreeHoursForecast } from "./getDailyThreeHoursForecast";
 import { searchCityName } from "./searchInput";
 import { displayThreeHourRange } from "./threeHourRange";
@@ -16,14 +17,17 @@ async function main() {
     currentLocation.lng
   );
   displayCityName(currentCityName);
-  const data = await getDailyThreeHoursForecast(
+  const currentWeather = await getCurrentWeather(
     currentLocation.lat,
     currentLocation.lng
   );
-  // TODO Change argument like daily and threeHourRange
-  displayCurrentWeather();
-  displayDailyForecast(data);
-  displayThreeHourRange(data);
+  displayCurrentWeather(currentWeather);
+  const dailyThreeHoursForecast = await getDailyThreeHoursForecast(
+    currentLocation.lat,
+    currentLocation.lng
+  );
+  displayDailyForecast(dailyThreeHoursForecast);
+  displayThreeHourRange(dailyThreeHoursForecast);
   searchCityName();
   saveFavoriteCity();
   displayFavoriteCities();

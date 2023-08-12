@@ -1,6 +1,3 @@
-import { displayDailyForecast } from './dailyForecast';
-import { displayThreeHourRange } from './threeHourRange';
-
 export const getDailyThreeHoursForecast = async (lat, lng) => {
   console.log('lat', lat);
   console.log('lng', lng);
@@ -18,8 +15,7 @@ export const getDailyThreeHoursForecast = async (lat, lng) => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    displayDailyForecast(data);
-    displayThreeHourRange(data);
+    return data
   } catch (error) {
     console.error('Error occurred', error);
   }

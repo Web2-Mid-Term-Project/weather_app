@@ -3,9 +3,9 @@ import { displayDailyForecast } from './dailyForecast';
 import { displayThreeHourRange } from './threeHourRange';
 import { getDailyThreeHoursForecast } from './getDailyThreeHoursForecast';
 
-export const displayAllWeatherInfo = (lat, lng) => {
+export const displayAllWeatherInfo = async (lat, lng) => {
   displayCurrentWeather(lat, lng);
-  displayDailyForecast(lat, lng);
-  displayThreeHourRange(lat, lng);
-  getDailyThreeHoursForecast(lat, lng);
+  const data = await getDailyThreeHoursForecast(lat, lng);
+  displayDailyForecast(data);
+  displayThreeHourRange(data);
 };

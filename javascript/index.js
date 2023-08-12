@@ -1,11 +1,9 @@
 import { displayCurrentWeather } from './currentWeather';
-import { getDailyThreeHoursForecast } from './getDailyThreeHoursForecast';
-import { getUserLocation } from './userLocation';
 import { searchCityName } from './searchInput';
+import { getDailyThreeHoursForecast } from './getDailyThreeHoursForecast';
 
 function main() {
   displayCurrentWeather();
-  getUserLocation();
   searchCityName();
   getDailyThreeHoursForecast();
 }

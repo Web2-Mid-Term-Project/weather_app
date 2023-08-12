@@ -26,6 +26,9 @@ function onPlaceChanged() {
   if (!place.geometry) {
     document.getElementById("search-input").placeholder = "Search Cities";
   } else {
-    displayAllWeatherInfo(place.name);
+    displayAllWeatherInfo(
+      place.geometry.location.lat(),
+      place.geometry.location.lng()
+    );
   }
 }

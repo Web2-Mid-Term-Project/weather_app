@@ -1,6 +1,6 @@
-export const displayThreeHourRange = (data) => {
+export const displayThreeHourRange = (data, day = 0) => {
   const formattedArray = [];
-  const dailyHoursData = data.list.slice(0, 8);
+  const dailyHoursData = data.list.slice(8 * day, 8 * (day + 1));
 
   dailyHoursData.forEach((obj) => {
     formattedArray.push({
@@ -20,6 +20,6 @@ export const displayThreeHourRange = (data) => {
     lowTempElem.textContent = weather.temp.min;
 
     const conditionElem = document.getElementById(`weather-condition-${i * 3}`);
-    conditionElem.textContent = weather.condition.join(' | ');
+    conditionElem.textContent = weather.condition.join(" | ");
   });
 };

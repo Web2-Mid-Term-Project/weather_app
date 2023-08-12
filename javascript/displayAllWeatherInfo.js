@@ -1,19 +1,23 @@
 import { displayCurrentWeather } from "./currentWeather";
 import { displayDailyForecast } from "./dailyForecast";
-import { getCurrentCityName } from "./getCurrentCityName";
 import { displayThreeHourRange } from "./threeHourRange";
 import { displayCityName } from "./cityName";
-import { getDailyThreeHoursForecast } from "./getDailyThreeHoursForecast";
-import { getCurrentWeather } from "./getCurrentWeather";
+import { API } from "./api";
 
 export const displayAllWeatherInfo = async (lat, lng) => {
-  const updatedCityName = await getCurrentCityName(lat, lng);
+  const updatedCityName = await API.getCurrentCityName(lat, lng);
   displayCityName(updatedCityName);
 
-  const currentWeather = await getCurrentWeather(lat, lng);
+  const currentWeather = await API.getCurrentWeather(lat, lng);
   displayCurrentWeather(currentWeather);
 
-  const data = await getDailyThreeHoursForecast(lat, lng);
+  const data = await API.getDailyThreeHoursForecast(lat, lng);
+  for (let i = 0; i < 5; i++) {
+    const day = document.getElementById(`${i}`);
+    day.addEventListener("click", () => {
+      displayThreeHourRange(data, i);
+    });
+  }
   displayDailyForecast(data);
   displayThreeHourRange(data);
 };

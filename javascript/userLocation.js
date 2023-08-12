@@ -4,20 +4,23 @@ const DEFAULT_CITY = {
 };
 
 export async function getUserLocation() {
-  if ("geolocation" in navigator) {
-    return navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    return DEFAULT_CITY;
-  }
-}
-
-function success(position) {
-  return {
-    lat: position.coords.latitude,
-    lng: position.coords.longitude,
-  };
-}
-
-function error() {
-  return DEFAULT_CITY;
+  return new Promise((resolve, reject) => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const location = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          resolve(location);
+        },
+        (error) => {
+          console.error('error!', error);
+          resolve(DEFAULT_CITY);
+        }
+      );
+    } else {
+      return DEFAULT_CITY;
+    }
+  });
 }

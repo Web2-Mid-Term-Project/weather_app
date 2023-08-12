@@ -1,58 +1,25 @@
-export const displayThreeHourRange = () => {
-  // FIXME: replace with real API call
-  // ref: https://openweathermap.org/forecast5
-  const dummyResponse = {
-    list: [
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 00:00:00",
-      },
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 03:00:00",
-      },
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 06:00:00",
-      },
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 09:00:00",
-      },
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 12:00:00",
-      },
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 15:00:00",
-      },
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 18:00:00",
-      },
-      {
-        main: { temp_min: 290.31, temp_max: 292.46 },
-        weather: [{ main: "Rain" }],
-        dt_txt: "2022-08-05 21:00:00",
-      },
-    ],
-  };
+export const displayThreeHourRange = (data) => {
+  const formattedArray = [];
+  const dailyHoursData = data.list.slice(0, 8);
 
-  dummyResponse.list.forEach((weather, i) => {
+  dailyHoursData.forEach((obj) => {
+    formattedArray.push({
+      temp: {
+        min: Math.round(obj.main.temp_min.toFixed(2)),
+        max: Math.round(obj.main.temp_max.toFixed(2)),
+      },
+      condition: obj.weather.map((condition) => condition.main),
+      dt_txt: obj.dt_txt,
+    });
+  });
+
+  formattedArray.forEach((weather, i) => {
     const highTempElem = document.getElementById(`high-temp-${i * 3}`);
-    highTempElem.textContent = weather.main.temp_max;
+    highTempElem.textContent = weather.temp.max;
     const lowTempElem = document.getElementById(`low-temp-${i * 3}`);
-    lowTempElem.textContent = weather.main.temp_min;
+    lowTempElem.textContent = weather.temp.min;
 
     const conditionElem = document.getElementById(`weather-condition-${i * 3}`);
-    conditionElem.textContent = weather.weather[0].main;
+    conditionElem.textContent = weather.condition.join(' | ');
   });
 };

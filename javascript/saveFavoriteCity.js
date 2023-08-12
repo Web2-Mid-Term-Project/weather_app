@@ -1,10 +1,12 @@
-export const saveFavoriteCity = () => {
+import { displayFavoriteCities } from "./displayFavoriteCities";
+
+export const saveFavoriteCity = (data) => {
   const favoriteButton = document.querySelector(".favorite-btn");
 
   favoriteButton.addEventListener("click", function () {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    const selectedCityName = "Vancouver"; // Should be replaced with the actual city name based on the city name fetched from API
+    const selectedCityName = data.city.name;
     const index = favorites.indexOf(selectedCityName);
 
     if (index === -1) {
@@ -17,6 +19,6 @@ export const saveFavoriteCity = () => {
       favoriteButton.classList.remove("favorited");
     }
 
-    displayFavoriteCities();
+    displayFavoriteCities(data);
   });
 };

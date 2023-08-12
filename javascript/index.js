@@ -4,7 +4,6 @@ import { displayDailyForecast } from "./dailyForecast";
 import { displayThreeHourRange } from "./threeHourRange";
 import { getDailyThreeHoursForecast } from "./getDailyThreeHoursForecast";
 import { getUserLocation } from "./userLocation";
-import { displayFavoriteCities } from "./displayFavoriteCities";
 import { saveFavoriteCity } from "./saveFavoriteCity";
 
 async function main() {
@@ -18,8 +17,7 @@ async function main() {
   displayDailyForecast(data);
   displayThreeHourRange(data);
   searchCityName();
-  displayFavoriteCities();
-  saveFavoriteCity();
+  saveFavoriteCity(data);
 }
 
 main();

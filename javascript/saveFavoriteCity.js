@@ -1,16 +1,17 @@
 import { displayFavoriteCities } from "./displayFavoriteCities";
+import { onPlaceChanged } from "./searchInput";
 
-export const saveFavoriteCity = (data) => {
+export const saveFavoriteCity = () => {
   const favoriteButton = document.querySelector(".favorite-btn");
 
   favoriteButton.addEventListener("click", function () {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    const selectedCityName = data.city.name;
-    const index = favorites.indexOf(selectedCityName);
+    const selectedCityData = onPlaceChanged();
+    const index = favorites.indexOf(selectedCityData.name);
 
     if (index === -1) {
-      favorites.push(selectedCityName);
+      favorites.push(selectedCityData);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       favoriteButton.classList.add("favorited");
     } else {
@@ -19,6 +20,6 @@ export const saveFavoriteCity = (data) => {
       favoriteButton.classList.remove("favorited");
     }
 
-    displayFavoriteCities(data);
+    displayFavoriteCities(selectedCityData);
   });
 };

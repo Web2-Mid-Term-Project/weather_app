@@ -1,61 +1,60 @@
 import { onPlaceChanged } from "./searchInput";
 import { displayFavoriteCities } from "./displayFavoriteCities";
-import { API } from "./api";
 
 export const saveFavoriteCity = (lat, lng, currentCityName) => {
   const favoriteButton = document.querySelector(".favorite-btn");
   const fav = document.getElementById("fav");
 
   favoriteButton.addEventListener("click", async function () {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const selectedCityData = getSelectedCityData(favorites, {
+      lat,
+      lng,
+      currentCityName,
+    });
 
-    const selectedCityDataFromInput = onPlaceChanged();
-    let selectedCityData;
+    if (!selectedCityData) return;
 
-    if (selectedCityDataFromInput) {
-      selectedCityData = selectedCityDataFromInput;
+    const index = favorites.findIndex(
+      (city) => city.name === selectedCityData.name
+    );
+
+    if (index === -1) {
+      favorites.push(selectedCityData);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      fav.style.fill = "#e9a14f";
     } else {
-      const dropdown = document.getElementById("favorite-city-dropdown");
-      const selectedCityName = dropdown.value;
-
-      selectedCityData = favorites.find(
-        (city) => city.name === selectedCityName
-      );
-
-      if (!selectedCityData) {
-        try {
-          const { cityName, data } = await API.getCurrentCityName(lat, lng);
-          selectedCityData = {
-            name: currentCityName,
-            geometry: {
-              location: {
-                lat: lat,
-                lng: lng,
-              },
-            },
-          };
-        } catch (error) {
-          console.error("Error getting city data", error);
-        }
-      }
+      favorites.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      fav.style.fill = "#fdfdfd";
     }
 
-    if (selectedCityData) {
-      const index = favorites.findIndex(
-        (city) => city.name === selectedCityData.name
-      );
-
-      if (index === -1) {
-        favorites.push(selectedCityData);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        fav.style.fill = "#e9a14f";
-      } else {
-        favorites.splice(index, 1);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        fav.style.fill = "#fdfdfd";
-      }
-
-      displayFavoriteCities();
-    }
+    displayFavoriteCities();
   });
+};
+
+const getSelectedCityData = (favorites, cityData = {}) => {
+  const { lat, lng, currentCityName } = cityData;
+  const selectedCityDataFromInput = onPlaceChanged();
+
+  if (selectedCityDataFromInput) return selectedCityDataFromInput;
+
+  const dropdown = document.getElementById("favorite-city-dropdown");
+  const selectedCityName = dropdown.value;
+
+  const selectedCityData = favorites.find(
+    (city) => city.name === selectedCityName
+  );
+
+  const currentCityData = {
+    name: currentCityName,
+    geometry: {
+      location: {
+        lat: lat,
+        lng: lng,
+      },
+    },
+  };
+
+  return selectedCityData || currentCityData;
 };

@@ -1,10 +1,12 @@
+import { onPlaceChanged } from "./searchInput";
 import { displayFavoriteCities } from "./displayFavoriteCities";
+import { API } from "./api";
 
-export const saveFavoriteCity = () => {
+export const saveFavoriteCity = (currentLocation, currentCityName) => {
   const favoriteButton = document.querySelector(".favorite-btn");
   const fav = document.getElementById("fav");
 
-  favoriteButton.addEventListener("click", function () {
+  favoriteButton.addEventListener("click", async function () {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     const selectedCityDataFromInput = onPlaceChanged();
@@ -19,6 +21,26 @@ export const saveFavoriteCity = () => {
       selectedCityData = favorites.find(
         (city) => city.name === selectedCityName
       );
+
+      if (!selectedCityData) {
+        try {
+          const { cityName, data } = await API.getCurrentCityName(
+            currentLocation.lat,
+            currentLocation.lng
+          );
+          selectedCityData = {
+            name: currentCityName,
+            geometry: {
+              location: {
+                lat: currentLocation.lat,
+                lng: currentLocation.lng,
+              },
+            },
+          };
+        } catch (error) {
+          console.error("Error getting city data", error);
+        }
+      }
     }
 
     if (selectedCityData) {

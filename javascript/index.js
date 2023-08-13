@@ -28,7 +28,7 @@ async function main() {
   displayDailyForecast(dailyThreeHoursForecast);
   displayThreeHourRange(dailyThreeHoursForecast);
   searchCityName();
-  saveFavoriteCity();
+  saveFavoriteCity(currentLocation, currentCityName);
   displayFavoriteCities();
 }
 

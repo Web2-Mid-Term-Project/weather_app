@@ -23,7 +23,7 @@ export function searchCityName() {
 export function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
-  if (!place.geometry) {
+  if (!place?.geometry) {
     document.getElementById("search-input").placeholder = "Search Cities";
   } else {
     displayAllWeatherInfo(

@@ -1,6 +1,6 @@
 import { displayAllWeatherInfo } from "./displayAllWeatherInfo";
 
-export const displayFavoriteCities = (data) => {
+export const displayFavoriteCities = () => {
   let favorites = JSON.parse(localStorage.getItem("favorites"));
   const dropdown = document.getElementById("favorite-city-dropdown");
 
@@ -8,25 +8,25 @@ export const displayFavoriteCities = (data) => {
   <option value="">-- Favorite Cities --</option>`;
 
   favorites?.forEach((city) => {
-    optionsHTML += `<option value="${city?.toLowerCase()}">${city}</option>`;
+    optionsHTML += `<option value="${city.name}">${city.name}</option>`;
   });
 
   optionsHTML += `</select>`;
 
   dropdown.innerHTML = optionsHTML;
 
-  console.log(data);
-
   dropdown.addEventListener("change", function () {
     const selectedCityName = dropdown.value;
-    const selectedCity = data.city.find(
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const selectedCityData = favorites.find(
       (city) => city.name === selectedCityName
     );
 
-    if (selectedCity) {
-      const selectedCityLat = selectedCity.coord.lat;
-      const selectedCityLng = selectedCity.coord.lon;
-      displayAllWeatherInfo(selectedCityLat, selectedCityLng);
+    if (selectedCityData) {
+      displayAllWeatherInfo(
+        selectedCityData.geometry.location.lat,
+        selectedCityData.geometry.location.lng
+      );
     }
   });
 };

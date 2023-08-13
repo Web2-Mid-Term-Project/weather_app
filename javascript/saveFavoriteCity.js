@@ -2,7 +2,7 @@ import { onPlaceChanged } from "./searchInput";
 import { displayFavoriteCities } from "./displayFavoriteCities";
 import { API } from "./api";
 
-export const saveFavoriteCity = (currentLocation, currentCityName) => {
+export const saveFavoriteCity = (lat, lng, currentCityName) => {
   const favoriteButton = document.querySelector(".favorite-btn");
   const fav = document.getElementById("fav");
 
@@ -24,16 +24,13 @@ export const saveFavoriteCity = (currentLocation, currentCityName) => {
 
       if (!selectedCityData) {
         try {
-          const { cityName, data } = await API.getCurrentCityName(
-            currentLocation.lat,
-            currentLocation.lng
-          );
+          const { cityName, data } = await API.getCurrentCityName(lat, lng);
           selectedCityData = {
             name: currentCityName,
             geometry: {
               location: {
-                lat: currentLocation.lat,
-                lng: currentLocation.lng,
+                lat: lat,
+                lng: lng,
               },
             },
           };

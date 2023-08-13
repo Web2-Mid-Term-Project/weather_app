@@ -3,6 +3,7 @@ import { displayAllWeatherInfo } from "./displayAllWeatherInfo";
 export const displayFavoriteCities = () => {
   let favorites = JSON.parse(localStorage.getItem("favorites"));
   const dropdown = document.getElementById("favorite-city-dropdown");
+  const searchInput = document.getElementById("search-input");
 
   let optionsHTML = `<select id="favorite-city-dropdown" class="favorite-city-dropdown">
   <option value="">-- Favorite Cities --</option>`;
@@ -27,6 +28,7 @@ export const displayFavoriteCities = () => {
         selectedCityData.geometry.location.lat,
         selectedCityData.geometry.location.lng
       );
+      searchInput.value = "";
     }
   });
 };

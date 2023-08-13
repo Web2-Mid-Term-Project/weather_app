@@ -1,455 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Weather App</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/main.css" />
-  <title>Weather App</title>
-</head>
+  <body>
+    <header>
+      <div class="logo-wrapper">
+        <svg
+          width="55px"
+          height="55px"
+          viewBox="0 0 120 120"
+          id="Layer_1"
+          version="1.1"
+          xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <style type="text/css">
+            .st0 {
+              fill: #fff9f1;
+            }
 
-<body>
+            .st1 {
+              fill: #6796ff;
+            }
 
-  <header>
-    <div class="logo-wrapper">
-      <svg width="55px" height="55px" viewBox="0 0 120 120" id="Layer_1" version="1.1" xml:space="preserve"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            .st2 {
+              fill: #598ae2;
+            }
 
-        <style type="text/css">
-          .st0 {
-            fill: #FFF9F1;
-          }
+            .st3 {
+              fill: #c3e6ff;
+            }
 
-          .st1 {
-            fill: #6796FF;
-          }
-
-          .st2 {
-            fill: #598AE2;
-          }
-
-          .st3 {
-            fill: #C3E6FF;
-          }
-
-          .st4 {
-            fill: #FFD47C;
-          }
-        </style>
-
-        <g>
-
-          <path class="st0"
-            d="M35.2,107.4h49.6c10,0,18.1-8.1,18.1-18.1V39.7c0-10-8.1-18.1-18.1-18.1H35.2c-10,0-18.1,8.1-18.1,18.1v49.6   C17.1,99.3,25.2,107.4,35.2,107.4z" />
-
-          <path class="st1" d="M17.1,38.5v8.3h85.7v-8.3c0-9.3-7.6-16.9-16.9-16.9H34C24.7,21.6,17.1,29.2,17.1,38.5z" />
+            .st4 {
+              fill: #ffd47c;
+            }
+          </style>
 
           <g>
+            <path
+              class="st0"
+              d="M35.2,107.4h49.6c10,0,18.1-8.1,18.1-18.1V39.7c0-10-8.1-18.1-18.1-18.1H35.2c-10,0-18.1,8.1-18.1,18.1v49.6   C17.1,99.3,25.2,107.4,35.2,107.4z"
+            />
 
-            <ellipse class="st2" cx="46.8" cy="34.9" rx="5.3" ry="5.3"
-              transform="matrix(0.7071 -0.7071 0.7071 0.7071 -10.9319 43.3121)" />
-
-            <ellipse class="st2" cx="73.2" cy="34.9" rx="5.3" ry="5.3"
-              transform="matrix(0.9732 -0.2298 0.2298 0.9732 -6.0496 17.7466)" />
-
-          </g>
-
-          <path class="st0"
-            d="M47.3,37h-0.9c-2.1,0-3.9-1.7-3.9-3.9V16.5c0-2.1,1.7-3.9,3.9-3.9h0.9c2.1,0,3.9,1.7,3.9,3.9v16.6   C51.1,35.3,49.4,37,47.3,37z" />
-
-          <path class="st0"
-            d="M73.6,37h-0.9c-2.1,0-3.9-1.7-3.9-3.9V16.5c0-2.1,1.7-3.9,3.9-3.9h0.9c2.1,0,3.9,1.7,3.9,3.9v16.6   C77.5,35.3,75.8,37,73.6,37z" />
-
-          <g>
-
-            <path class="st3"
-              d="M78.5,73.1h-2.6c0.1-0.5,0.1-1,0.1-1.5c0-5.2-4.2-9.4-9.4-9.4c-1.8,0-3.4,0.5-4.8,1.3    c-2.2-3.4-6-5.7-10.4-5.7c-6.8,0-12.3,5.5-12.3,12.3c0,1.1,0.2,2.2,0.4,3.2c-3.5,0.9-6.1,4-6.1,7.8c0,4.4,3.6,8,8,8h36.9    c4.4,0,8-3.6,8-8S82.9,73.1,78.5,73.1z" />
+            <path
+              class="st1"
+              d="M17.1,38.5v8.3h85.7v-8.3c0-9.3-7.6-16.9-16.9-16.9H34C24.7,21.6,17.1,29.2,17.1,38.5z"
+            />
 
             <g>
+              <ellipse
+                class="st2"
+                cx="46.8"
+                cy="34.9"
+                rx="5.3"
+                ry="5.3"
+                transform="matrix(0.7071 -0.7071 0.7071 0.7071 -10.9319 43.3121)"
+              />
 
-              <circle class="st4" cx="71.3" cy="69.2" r="8.9" />
-
-              <path class="st4"
-                d="M71.3,59.2c0.5,0,0.9-0.4,0.9-0.9V55c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9v3.2     C70.3,58.8,70.8,59.2,71.3,59.2z" />
-
-              <path class="st4"
-                d="M71.3,79.2c-0.5,0-0.9,0.4-0.9,0.9v3.2c0,0.5,0.4,0.9,0.9,0.9c0.5,0,0.9-0.4,0.9-0.9v-3.2     C72.2,79.6,71.8,79.2,71.3,79.2z" />
-
-              <path class="st4"
-                d="M61.3,69.2c0-0.5-0.4-0.9-0.9-0.9h-3.2c-0.5,0-0.9,0.4-0.9,0.9c0,0.5,0.4,0.9,0.9,0.9h3.2     C60.9,70.1,61.3,69.7,61.3,69.2z" />
-
-              <path class="st4"
-                d="M85.4,68.2h-3.2c-0.5,0-0.9,0.4-0.9,0.9c0,0.5,0.4,0.9,0.9,0.9h3.2c0.5,0,0.9-0.4,0.9-0.9     C86.4,68.7,86,68.2,85.4,68.2z" />
-
-              <path class="st4"
-                d="M62.9,62.1c0.4,0.4,1,0.4,1.3,0c0.4-0.4,0.4-1,0-1.3L62,58.5c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,1,0,1.3     L62.9,62.1z" />
-
-              <path class="st4"
-                d="M79.7,76.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,1,0,1.3l2.3,2.3c0.4,0.4,1,0.4,1.3,0c0.4-0.4,0.4-1,0-1.3     L79.7,76.3z" />
-
-              <path class="st4"
-                d="M79.7,62.1l2.3-2.3c0.4-0.4,0.4-1,0-1.3c-0.4-0.4-1-0.4-1.3,0l-2.3,2.3c-0.4,0.4-0.4,1,0,1.3     C78.7,62.5,79.3,62.5,79.7,62.1z" />
-
-              <path class="st4"
-                d="M62.9,76.3l-2.3,2.3c-0.4,0.4-0.4,1,0,1.3c0.4,0.4,1,0.4,1.3,0l2.3-2.3c0.4-0.4,0.4-1,0-1.3     C63.9,75.9,63.3,75.9,62.9,76.3z" />
-
+              <ellipse
+                class="st2"
+                cx="73.2"
+                cy="34.9"
+                rx="5.3"
+                ry="5.3"
+                transform="matrix(0.9732 -0.2298 0.2298 0.9732 -6.0496 17.7466)"
+              />
             </g>
 
-          </g>
-
-        </g>
-
-      </svg>
-      <h1>Nakama Weather</h1>
-    </div>
-  </header>
-
-  <main>
-    <div class="main-section">
-
-      <section class="section input-section">
-        <select id="favorite-city-dropdown" class="favorite-city-dropdown">
-          <option value="">-- Favorite Cities --</option>
-          <option value="vancouver">Vancouver</option>
-          <!-- When user saves cities, it should be populated here -->
-        </select>
-
-        <!-- This also needs to have autocomplete functionality from google -->
-        <div class="main-search">
-          <svg width="25px" height="25px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6a5.948 5.948 0 0 0 3.664-1.273l2.863 2.863 1.063-1.063-2.863-2.863A5.949 5.949 0 0 0 13 7c0-3.31-2.69-6-6-6zm0 1a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5z"
-              style="line-height:normal;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none"
-              color="#000000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"
-              fill="#32404e" />
-          </svg>
-          <input type="search" id="search-input" class="search-input" name="search-input" placeholder="Search Cities" />
-        </div>
-      </section>
+              class="st0"
+              d="M47.3,37h-0.9c-2.1,0-3.9-1.7-3.9-3.9V16.5c0-2.1,1.7-3.9,3.9-3.9h0.9c2.1,0,3.9,1.7,3.9,3.9v16.6   C51.1,35.3,49.4,37,47.3,37z"
+            />
 
-      <section class="section current-weather-section">
-        <h2>Current Weather</h2>
-        <!-- 
+            <path
+              class="st0"
+              d="M73.6,37h-0.9c-2.1,0-3.9-1.7-3.9-3.9V16.5c0-2.1,1.7-3.9,3.9-3.9h0.9c2.1,0,3.9,1.7,3.9,3.9v16.6   C77.5,35.3,75.8,37,73.6,37z"
+            />
+
+            <g>
+              <path
+                class="st3"
+                d="M78.5,73.1h-2.6c0.1-0.5,0.1-1,0.1-1.5c0-5.2-4.2-9.4-9.4-9.4c-1.8,0-3.4,0.5-4.8,1.3    c-2.2-3.4-6-5.7-10.4-5.7c-6.8,0-12.3,5.5-12.3,12.3c0,1.1,0.2,2.2,0.4,3.2c-3.5,0.9-6.1,4-6.1,7.8c0,4.4,3.6,8,8,8h36.9    c4.4,0,8-3.6,8-8S82.9,73.1,78.5,73.1z"
+              />
+
+              <g>
+                <circle class="st4" cx="71.3" cy="69.2" r="8.9" />
+
+                <path
+                  class="st4"
+                  d="M71.3,59.2c0.5,0,0.9-0.4,0.9-0.9V55c0-0.5-0.4-0.9-0.9-0.9c-0.5,0-0.9,0.4-0.9,0.9v3.2     C70.3,58.8,70.8,59.2,71.3,59.2z"
+                />
+
+                <path
+                  class="st4"
+                  d="M71.3,79.2c-0.5,0-0.9,0.4-0.9,0.9v3.2c0,0.5,0.4,0.9,0.9,0.9c0.5,0,0.9-0.4,0.9-0.9v-3.2     C72.2,79.6,71.8,79.2,71.3,79.2z"
+                />
+
+                <path
+                  class="st4"
+                  d="M61.3,69.2c0-0.5-0.4-0.9-0.9-0.9h-3.2c-0.5,0-0.9,0.4-0.9,0.9c0,0.5,0.4,0.9,0.9,0.9h3.2     C60.9,70.1,61.3,69.7,61.3,69.2z"
+                />
+
+                <path
+                  class="st4"
+                  d="M85.4,68.2h-3.2c-0.5,0-0.9,0.4-0.9,0.9c0,0.5,0.4,0.9,0.9,0.9h3.2c0.5,0,0.9-0.4,0.9-0.9     C86.4,68.7,86,68.2,85.4,68.2z"
+                />
+
+                <path
+                  class="st4"
+                  d="M62.9,62.1c0.4,0.4,1,0.4,1.3,0c0.4-0.4,0.4-1,0-1.3L62,58.5c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,1,0,1.3     L62.9,62.1z"
+                />
+
+                <path
+                  class="st4"
+                  d="M79.7,76.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,1,0,1.3l2.3,2.3c0.4,0.4,1,0.4,1.3,0c0.4-0.4,0.4-1,0-1.3     L79.7,76.3z"
+                />
+
+                <path
+                  class="st4"
+                  d="M79.7,62.1l2.3-2.3c0.4-0.4,0.4-1,0-1.3c-0.4-0.4-1-0.4-1.3,0l-2.3,2.3c-0.4,0.4-0.4,1,0,1.3     C78.7,62.5,79.3,62.5,79.7,62.1z"
+                />
+
+                <path
+                  class="st4"
+                  d="M62.9,76.3l-2.3,2.3c-0.4,0.4-0.4,1,0,1.3c0.4,0.4,1,0.4,1.3,0l2.3-2.3c0.4-0.4,0.4-1,0-1.3     C63.9,75.9,63.3,75.9,62.9,76.3z"
+                />
+              </g>
+            </g>
+          </g>
+        </svg>
+        <h1>Nakama Weather</h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="main-section">
+        <section class="section input-section">
+          <select id="favorite-city-dropdown" class="favorite-city-dropdown">
+            <option value="">-- Favorite Cities --</option>
+            <option value="vancouver">Vancouver</option>
+            <!-- When user saves cities, it should be populated here -->
+          </select>
+
+          <!-- This also needs to have autocomplete functionality from google -->
+          <div class="main-search">
+            <svg
+              width="25px"
+              height="25px"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6a5.948 5.948 0 0 0 3.664-1.273l2.863 2.863 1.063-1.063-2.863-2.863A5.949 5.949 0 0 0 13 7c0-3.31-2.69-6-6-6zm0 1a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5z"
+                style="
+                  line-height: normal;
+                  font-variant-ligatures: none;
+                  font-variant-position: normal;
+                  font-variant-caps: normal;
+                  font-variant-numeric: normal;
+                  font-variant-alternates: normal;
+                  font-feature-settings: normal;
+                  text-indent: 0;
+                  text-align: start;
+                  text-decoration-line: none;
+                  text-decoration-style: solid;
+                  text-decoration-color: #000000;
+                  text-transform: none;
+                  shape-padding: 0;
+                  isolation: auto;
+                  mix-blend-mode: normal;
+                  marker: none;
+                "
+                color="#000000"
+                font-weight="400"
+                font-family="sans-serif"
+                white-space="normal"
+                overflow="visible"
+                fill="#32404e"
+              />
+            </svg>
+            <input
+              type="search"
+              id="search-input"
+              class="search-input"
+              name="search-input"
+              placeholder="Search Cities"
+            />
+          </div>
+        </section>
+
+        <section class="section current-weather-section">
+          <h2>Current Weather</h2>
+          <!-- 
           The bg image changes based on the time: daytime or nighttime
           - for daytime, use this class: current-container--day
           - for night, use this class: current-container--night
          -->
-        <div class="container current-container current-container--day">
-          <div class="bg-overlay"></div>
-          <!-- click favorite button to save city into the select dropdown -->
-          <button class="favorite-btn">
-            <svg height="40px" width="40px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve">
-              <path fill="#ED8A19;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757
+          <div class="container current-container current-container--day">
+            <div class="bg-overlay"></div>
+            <!-- click favorite button to save city into the select dropdown -->
+            <button class="favorite-btn">
+              <svg
+                height="40px"
+                width="40px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 47.94 47.94"
+                xml:space="preserve"
+              >
+                <path
+                  fill="#ED8A19;"
+                  d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757
 	c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042
 	c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685
 	c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528
 	c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956
-	C22.602,0.567,25.338,0.567,26.285,2.486z" />
-            </svg>
-          </button>
+	C22.602,0.567,25.338,0.567,26.285,2.486z"
+                  id="fav"
+                />
+              </svg>
+            </button>
 
-          <!-- These contents below should show based on the city that user search -->
-          <div class="current-wrapper">
-            <h3 class="city-name"></h3>
-            <hr>
-            <div class="city-temperature">
-              <span id="current-temperature"></span>
-              <span class="temperature-unit">°C</span>
-            </div>
-            <div id="current-weather-condition"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section daily-forcast-section">
-        <h2>Daily Forecast - 5 days</h2>
-
-        <div class="container">
-          <div class="daily-tile day-one">
-            <div class="tile-top-content daily-tile-top-content">
-              <div id="daily-day1" class="daily-day"></div>
-              <div class="daily-date-wrapper">
-                <span id="daily-month1" class="month"></span>
-                <span id="daily-date1" class="date"></span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-day1" class="high-temp"></span>
+            <!-- These contents below should show based on the city that user search -->
+            <div class="current-wrapper">
+              <h3 class="city-name"></h3>
+              <hr />
+              <div class="city-temperature">
+                <span id="current-temperature"></span>
                 <span class="temperature-unit">°C</span>
               </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-day1" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-day1" class="extra-info"></div>
+              <div id="current-weather-condition"></div>
             </div>
           </div>
+        </section>
 
-          <div class="daily-tile day-two">
-            <div class="tile-top-content daily-tile-top-content">
-              <div id="daily-day2" class="daily-day"></div>
-              <div class="daily-date-wrapper">
-                <span id="daily-month2" class="month"></span>
-                <span id="daily-date2" class="date"></span>
+        <section class="section daily-forcast-section">
+          <h2>Daily Forecast - 5 days</h2>
+
+          <div class="container">
+            <div class="daily-tile day-one">
+              <div class="tile-top-content daily-tile-top-content">
+                <div id="daily-day1" class="daily-day"></div>
+                <div class="daily-date-wrapper">
+                  <span id="daily-month1" class="month"></span>
+                  <span id="daily-date1" class="date"></span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-day1" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-day1" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-day1" class="extra-info"></div>
               </div>
             </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-day2" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
+
+            <div class="daily-tile day-two">
+              <div class="tile-top-content daily-tile-top-content">
+                <div id="daily-day2" class="daily-day"></div>
+                <div class="daily-date-wrapper">
+                  <span id="daily-month2" class="month"></span>
+                  <span id="daily-date2" class="date"></span>
+                </div>
               </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-day2" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-day2" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-day2" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-day2" class="extra-info"></div>
               </div>
-              <div id="weather-condition-day2" class="extra-info"></div>
+            </div>
+
+            <div class="daily-tile day-three">
+              <div class="tile-top-content daily-tile-top-content">
+                <div id="daily-day3" class="daily-day"></div>
+                <div class="daily-date-wrapper">
+                  <span id="daily-month3" class="month"></span>
+                  <span id="daily-date3" class="date"></span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-day3" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-day3" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-day3" class="extra-info"></div>
+              </div>
+            </div>
+
+            <div class="daily-tile day-four">
+              <div class="tile-top-content daily-tile-top-content">
+                <div id="daily-day4" class="daily-day"></div>
+                <div class="daily-date-wrapper">
+                  <span id="daily-month4" class="month"></span>
+                  <span id="daily-date4" class="date"></span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-day4" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-day4" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-day4" class="extra-info"></div>
+              </div>
+            </div>
+
+            <div class="daily-tile day-five">
+              <div class="tile-top-content daily-tile-top-content">
+                <div id="daily-day5" class="daily-day"></div>
+                <div class="daily-date-wrapper">
+                  <span id="daily-month5" class="month"></span>
+                  <span id="daily-date5" class="date"></span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-day5" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-day5" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-day5" class="extra-info"></div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="daily-tile day-three">
-            <div class="tile-top-content daily-tile-top-content">
-              <div id="daily-day3" class="daily-day"></div>
-              <div class="daily-date-wrapper">
-                <span id="daily-month3" class="month"></span>
-                <span id="daily-date3" class="date"></span>
+        <section class="section hours-forcast-section">
+          <h2>3 Hours Forecast</h2>
+          <div class="container">
+            <div class="hours-tile tile-12am">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">12 AM</span>
+                  <span> - </span>
+                  <span class="time">3 AM</span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-0" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-0" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-0" class="extra-info"></div>
               </div>
             </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-day3" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
+
+            <div class="hours-tile tile-3am">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">3 AM </span>
+                  <span> - </span>
+                  <span class="time">6 AM</span>
+                </div>
               </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-day3" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-3" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-3" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-3" class="extra-info"></div>
               </div>
-              <div id="weather-condition-day3" class="extra-info"></div>
+            </div>
+
+            <div class="hours-tile tile-6am">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">6 AM </span>
+                  <span> - </span>
+                  <span class="time">9 AM</span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-6" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-6" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-6" class="extra-info"></div>
+              </div>
+            </div>
+
+            <div class="hours-tile tile-9am">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">9 AM </span>
+                  <span> - </span>
+                  <span class="time">12 PM</span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-9" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-9" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-9" class="extra-info"></div>
+              </div>
+            </div>
+
+            <div class="hours-tile tile-12pm">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">12 PM</span>
+                  <span> - </span>
+                  <span class="time">3 PM</span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-12" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-12" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-12" class="extra-info"></div>
+              </div>
+            </div>
+
+            <div class="hours-tile tile-3pm">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">3 PM </span>
+                  <span> - </span>
+                  <span class="time">6 PM</span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-15" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-15" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-15" class="extra-info"></div>
+              </div>
+            </div>
+
+            <div class="hours-tile tile-6pm">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">6 PM </span>
+                  <span> - </span>
+                  <span class="time">9 PM</span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-18" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-18" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-18" class="extra-info"></div>
+              </div>
+            </div>
+
+            <div class="hours-tile tile-9pm">
+              <div class="tile-top-content">
+                <div class="time-wrapper">
+                  <span class="time">9 PM </span>
+                  <span> - </span>
+                  <span class="time">12 AM</span>
+                </div>
+              </div>
+              <div class="tile-bottom-content">
+                <div class="temp-wrapper">
+                  <span id="high-temp-21" class="high-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div class="temp-wrapper">
+                  <span id="low-temp-21" class="low-temp"></span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+                <div id="weather-condition-21" class="extra-info"></div>
+              </div>
             </div>
           </div>
+        </section>
+      </div>
+    </main>
 
-          <div class="daily-tile day-four">
-            <div class="tile-top-content daily-tile-top-content">
-              <div id="daily-day4" class="daily-day"></div>
-              <div class="daily-date-wrapper">
-                <span id="daily-month4" class="month"></span>
-                <span id="daily-date4" class="date"></span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-day4" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-day4" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-day4" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="daily-tile day-five">
-            <div class="tile-top-content daily-tile-top-content">
-              <div id="daily-day5" class="daily-day"></div>
-              <div class="daily-date-wrapper">
-                <span id="daily-month5" class="month"></span>
-                <span id="daily-date5" class="date"></span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-day5" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-day5" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-day5" class="extra-info"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section hours-forcast-section">
-        <h2>3 Hours Forecast</h2>
-        <div class="container">
-          <div class="hours-tile tile-12am">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">12 AM</span>
-                <span> - </span>
-                <span class="time">3 AM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-0" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-0" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-0" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="hours-tile tile-3am">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">3 AM </span>
-                <span> - </span>
-                <span class="time">6 AM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-3" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-3" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-3" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="hours-tile tile-6am">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">6 AM </span>
-                <span> - </span>
-                <span class="time">9 AM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-6" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-6" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-6" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="hours-tile tile-9am">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">9 AM </span>
-                <span> - </span>
-                <span class="time">12 PM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-9" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-9" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-9" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="hours-tile tile-12pm">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">12 PM</span>
-                <span> - </span>
-                <span class="time">3 PM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-12" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-12" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-12" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="hours-tile tile-3pm">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">3 PM </span>
-                <span> - </span>
-                <span class="time">6 PM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-15" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-15" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-15" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="hours-tile tile-6pm">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">6 PM </span>
-                <span> - </span>
-                <span class="time">9 PM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-18" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-18" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-18" class="extra-info"></div>
-            </div>
-          </div>
-
-          <div class="hours-tile tile-9pm">
-            <div class="tile-top-content">
-              <div class="time-wrapper">
-                <span class="time">9 PM </span>
-                <span> - </span>
-                <span class="time">12 AM</span>
-              </div>
-            </div>
-            <div class="tile-bottom-content">
-              <div class="temp-wrapper">
-                <span id="high-temp-21" class="high-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div class="temp-wrapper">
-                <span id="low-temp-21" class="low-temp"></span>
-                <span class="temperature-unit">°C</span>
-              </div>
-              <div id="weather-condition-21" class="extra-info"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <script src="bundle.js" type="text/javascript"></script>
-</body>
-
+    <script src="bundle.js" type="text/javascript"></script>
+  </body>
 </html>

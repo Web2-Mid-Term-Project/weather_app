@@ -3,6 +3,7 @@ import { onPlaceChanged } from "./searchInput";
 
 export const saveFavoriteCity = () => {
   const favoriteButton = document.querySelector(".favorite-btn");
+  const fav = document.getElementById("fav");
 
   favoriteButton.addEventListener("click", function () {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -15,13 +16,13 @@ export const saveFavoriteCity = () => {
     if (index === -1) {
       favorites.push(selectedCityData);
       localStorage.setItem("favorites", JSON.stringify(favorites));
-      favoriteButton.classList.add("favorited");
+      fav.style.fill = "#e9a14f";
     } else {
       favorites.splice(index, 1);
       localStorage.setItem("favorites", JSON.stringify(favorites));
-      favoriteButton.classList.remove("favorited");
+      fav.style.fill = "#fdfdfd";
     }
 
-    displayFavoriteCities(selectedCityData);
+    displayFavoriteCities();
   });
 };

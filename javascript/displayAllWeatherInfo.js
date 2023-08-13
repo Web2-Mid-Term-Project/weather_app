@@ -5,6 +5,7 @@ import { displayThreeHourRange } from "./threeHourRange";
 import { displayCityName } from "./cityName";
 import { getDailyThreeHoursForecast } from "./getDailyThreeHoursForecast";
 import { getCurrentWeather } from "./getCurrentWeather";
+import { setFavoriteButtonColor } from "./setFavoriteButtonColor";
 
 export const displayAllWeatherInfo = async (lat, lng) => {
   const updatedCityName = await getCurrentCityName(lat, lng);
@@ -15,5 +16,8 @@ export const displayAllWeatherInfo = async (lat, lng) => {
 
   const data = await getDailyThreeHoursForecast(lat, lng);
   displayDailyForecast(data);
+
   displayThreeHourRange(data);
+
+  setFavoriteButtonColor(lat, lng);
 };

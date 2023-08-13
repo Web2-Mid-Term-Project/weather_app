@@ -8,7 +8,20 @@ export const saveFavoriteCity = () => {
   favoriteButton.addEventListener("click", function () {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    const selectedCityData = onPlaceChanged();
+    const selectedCityDataFromInput = onPlaceChanged();
+    let selectedCityData;
+
+    if (selectedCityDataFromInput) {
+      selectedCityData = selectedCityDataFromInput;
+    } else {
+      const dropdown = document.getElementById("favorite-city-dropdown");
+      const selectedCityName = dropdown.value;
+
+      selectedCityData = favorites.find(
+        (city) => city.name === selectedCityName
+      );
+    }
+
     if (selectedCityData) {
       const index = favorites.findIndex(
         (city) => city.name === selectedCityData.name

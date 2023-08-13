@@ -20,10 +20,10 @@ export function searchCityName() {
   document.head.appendChild(script);
 }
 
-function onPlaceChanged() {
+export function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
-  if (!place.geometry) {
+  if (!place?.geometry) {
     document.getElementById("search-input").placeholder = "Search Cities";
   } else {
     displayAllWeatherInfo(
@@ -31,4 +31,6 @@ function onPlaceChanged() {
       place.geometry.location.lng()
     );
   }
+
+  return place;
 }

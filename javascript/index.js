@@ -5,6 +5,8 @@ import { displayDailyForecast } from "./dailyForecast";
 import { searchCityName } from "./searchInput";
 import { displayThreeHourRange } from "./threeHourRange";
 import { getUserLocation } from "./userLocation";
+import { saveFavoriteCity } from "./saveFavoriteCity";
+import { displayFavoriteCities } from "./displayFavoriteCities";
 
 async function main() {
   const { lat, lng } = await getUserLocation();
@@ -26,6 +28,8 @@ async function main() {
   displayDailyForecast(dailyThreeHoursForecast);
   displayThreeHourRange(dailyThreeHoursForecast);
   searchCityName();
+  saveFavoriteCity(lat, lng, currentCityName);
+  displayFavoriteCities();
 }
 
 main();

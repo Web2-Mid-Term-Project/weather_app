@@ -7,6 +7,7 @@ import { displayThreeHourRange } from "./threeHourRange";
 import { getUserLocation } from "./userLocation";
 import { saveFavoriteCity } from "./saveFavoriteCity";
 import { displayFavoriteCities } from "./displayFavoriteCities";
+import { setBackgroundImage } from "./setBackgroundImage";
 
 async function main() {
   const { lat, lng } = await getUserLocation();
@@ -30,6 +31,7 @@ async function main() {
   searchCityName();
   saveFavoriteCity(lat, lng, currentCityName);
   displayFavoriteCities();
+  setBackgroundImage(currentWeather);
 }
 
 main();

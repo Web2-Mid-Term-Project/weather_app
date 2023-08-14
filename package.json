@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "sass": "sass scss:css",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prod-build": "rollup -c --environment GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY,WEATHER_API_KEY=$WEATHER_API_KEY"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^5.0.2",

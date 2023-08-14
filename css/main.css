@@ -192,10 +192,10 @@ h2 {
   border-radius: 10px;
 }
 .current-weather-section .current-container--day {
-  background-image: url("/docs/assets/images/daytime-photo.jpeg");
+  background-image: url("../assets/images/daytime-photo.jpeg");
 }
 .current-weather-section .current-container--night {
-  background-image: url("/docs/assets/images/nighttime-photo.jpeg");
+  background-image: url("../assets/images/nighttime-photo.jpeg");
 }
 .current-weather-section .bg-overlay {
   position: absolute;

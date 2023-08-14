@@ -59,7 +59,7 @@ body {
 .main-search {
   width: 300px;
   height: 45px;
-  background-color: #C3E6FF;
+  background-color: #c3e6ff;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -83,7 +83,7 @@ body {
 .main-search #search-input {
   width: 250px;
   height: 100%;
-  background-color: #C3E6FF;
+  background-color: #c3e6ff;
   border: 0;
   margin-left: 5px;
 }
@@ -99,7 +99,7 @@ body {
 }
 
 header {
-  background-color: #C3E6FF;
+  background-color: #c3e6ff;
   font-size: 2.5rem;
   display: flex;
   flex-direction: row;
@@ -139,7 +139,7 @@ h2 {
   width: 90vw;
   height: auto;
   min-height: 500px;
-  background-color: #FFF9F1;
+  background-color: #fff9f1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -192,10 +192,10 @@ h2 {
   border-radius: 10px;
 }
 .current-weather-section .current-container--day {
-  background-image: url("/images/daytime-photo.jpeg");
+  background-image: url("/docs/assets/images/daytime-photo.jpeg");
 }
 .current-weather-section .current-container--night {
-  background-image: url("/images/nighttime-photo.jpeg");
+  background-image: url("/docs/assets/images/nighttime-photo.jpeg");
 }
 .current-weather-section .bg-overlay {
   position: absolute;
@@ -367,7 +367,7 @@ h2 {
 
 .tile-top-content {
   border-bottom: 2px solid #f3ae53;
-  background-color: #C3E6FF;
+  background-color: #c3e6ff;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
@@ -383,11 +383,11 @@ h2 {
 .tile-bottom-content .high-temp {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #598AE2;
+  color: #598ae2;
 }
 
 .daily-tile-top-content {
-  background-color: #FFD47C;
+  background-color: #ffd47c;
 }
 
 .extra-info {

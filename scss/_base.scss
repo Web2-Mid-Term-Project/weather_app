@@ -17,8 +17,8 @@ $tile-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
 $desktop-width: 1220px;
 $tablet-width: 830px;
 $mobile-width: 500px;
-$daytime-bg-pic: '/docs/assets/images/daytime-photo.jpeg';
-$nighttime-bg-pic: '/docs/assets/images/nighttime-photo.jpeg';
+$daytime-bg-pic: '../assets/images/daytime-photo.jpeg';
+$nighttime-bg-pic: '../assets/images/nighttime-photo.jpeg';
 
 * {
   margin: 0;
